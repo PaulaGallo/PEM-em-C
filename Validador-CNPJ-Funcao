@@ -1,3 +1,8 @@
+// Exercício: Validador de CNPJ
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: validar os dígitos verificadores do CNPJ utilizando funcoes
+
 #include<stdio.h>
 int digitoVerificador(int cnpj[], int mult[], int N)
 {	int i, soma=0;
