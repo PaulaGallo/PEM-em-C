@@ -3,6 +3,7 @@
 // Linguagem: C
 // Objetivo: validar os dígitos verificadores do CNPJ utilizando funcoes
 
+#include<string.h>
 #include<stdio.h>
 int digitoVerificador(int cnpj[], int mult[], int N)
 {	int i, soma=0;
@@ -14,14 +15,21 @@ int digitoVerificador(int cnpj[], int mult[], int N)
 } //fim da função
 
 int main()
-{   int cnpj[14];
+{   int cnpj[14], tam, i, j=0;
+    char entrada[50];
 	int m1[12]={5,4,3,2,9,8,7,6,5,4,3,2};
 	int m2[13]={6,5,4,3,2,9,8,7,6,5,4,3,2};
-	int i;
-	printf("Entre com os 14 digitos do CNPJ:");
-	for(i=0;i<14;i++)
-	{	scanf("%d", &cnpj[i]);
-	}
+	
+	printf("Digite o CNPJ:");
+    gets(entrada);
+    tam = strlen(entrada);
+    for(i=0; i<tam; i++)
+    {   if(entrada[i]>=48 && entrada[i]<=57)
+        {   cnpj[j] = entrada[i]-48;
+            
+            j++;
+        }
+    }
 	
 	if(digitoVerificador(cnpj,m1,12) == cnpj[12] &&
 	   digitoVerificador(cnpj,m2,13) == cnpj[13]){
