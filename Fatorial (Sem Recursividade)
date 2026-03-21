@@ -2,6 +2,7 @@
 // Disciplina: Programação Estruturada e Modular
 // Linguagem: C
 // Objetivo: Algoritmo para realizar um cálculo fatorial sem utilizar recursividade
+// https://onlinegdb.com/wJTGgFGeb
 
 #include <stdio.h>
 
