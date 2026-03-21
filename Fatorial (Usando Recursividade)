@@ -1,0 +1,32 @@
+// Exercício: Exercício de Fatorial (Usando recursividade)
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Algoritmo para realizar um cálculo fatorial utilizando recursividade
+//https://onlinegdb.com/75WIBIdNI
+
+#include <stdio.h>
+
+int fatorial (int n)
+{
+    if(n==0) {
+        printf("Ufa! CHeguei na base: fatorial de 0 vale 1. \n");
+        return 1;
+    }
+
+    else {
+        printf ("Para calcular o fatorial de %d, eu preciso do de %d. \n", n, n-1);
+        int aux = fatorial(n-1);
+        printf ("O fatorial de %d vale  %d. \n", n-1, aux);
+        printf ("Assim o fatorial de %d vale %d. \n", n, n*aux);
+        return n* aux;
+    }
+    
+
+}
+
+int main()
+{
+    printf("Fatorial de 8: = %d\n", fatorial(8));
+
+    return 0;
+}
