@@ -1,0 +1,26 @@
+// Exercício: Exercício de Fatorial (Sem recursividade)
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Algoritmo para realizar um cálculo fatorial sem utilizar recursividade
+
+#include <stdio.h>
+
+int fatorial (int n)
+{   
+    int i, prod = 1; 
+    
+    for (i=n; i>=1; i--)
+    {
+        printf("Antes: Valor de i = %d, prod = %d\n", i, prod);
+        prod = prod * i;    
+    }
+    return prod;
+    
+}
+
+int main()
+{
+    printf("Fatorial de 5: = %d\n", fatorial(5));
+
+    return 0;
+}
