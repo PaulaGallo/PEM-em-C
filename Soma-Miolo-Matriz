@@ -1,0 +1,36 @@
+// Exercício: Soma do Miolo de Matriz
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Crie uma função em C para calcular e retornar a soma dos elementos que não estão na borda de uma matriz. 
+// Exemplo: dada a matriz abaixo, a função retornará: 6 + 7 + 10 + 11 = 34.
+// {1, 2, 3, 4}
+// {5, 6, 7, 8}
+// {9, 10, 11, 12}
+// {13, 14, 15, 16}
+// https://onlinegdb.com/nFx7ZWVjS
+
+#include <stdio.h>
+
+int somaInterna(int M, int N, int mat[M][N]){
+int soma=0, i, j;
+
+    for (i=1; i<M-1; i++){
+        for (j=1; j<N-1; j++){
+            soma = soma + mat[i][j];
+        }
+    }
+    return soma;
+}
+
+int main()
+{
+    int minhaMatriz[4][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},    
+        {9, 10, 11, 12}, 
+        {13, 14, 15, 16}
+    };
+
+    printf("A soma dos elementos internos é: %d\n", somaInterna(4, 4, minhaMatriz));
+    return 0;
+}
