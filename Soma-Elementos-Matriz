@@ -1,0 +1,293 @@
+// Exercício: Soma do Miolo de Matriz
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Crie uma função em C para calcular e retornar a soma dos elementos que não estão na borda de uma matriz. 
+// Exemplo: dada a matriz abaixo, a função retornará: 6 + 7 + 10 + 11 = 34.
+// {1, 2, 3, 4}
+// {5, 6, 7, 8}
+// {9, 10, 11, 12}
+// {13, 14, 15, 16}
+// Link: https://onlinegdb.com/nFx7ZWVjS
+
+#include <stdio.h>
+
+int somaInterna(int M, int N, int mat[M][N]){
+int soma=0, i, j;
+
+    for (i=1; i<M-1; i++){
+        for (j=1; j<N-1; j++){
+            soma = soma + mat[i][j];
+        }
+    }
+    return soma;
+}
+
+int main()
+{
+    int minhaMatriz[4][4] = {
+        {1, 2, 3, 4},
+        {5, 6, 7, 8},    
+        {9, 10, 11, 12}, 
+        {13, 14, 15, 16}
+    };
+
+    printf("A soma dos elementos internos é: %d\n", somaInterna(4, 4, minhaMatriz));
+    return 0;
+}
+
+//______________________________________________________________________________________________________________________________________
+
+// Exercício: Soma das bordas Horizontais de Matriz
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Variação do problema anteior. 
+// Crie uma função em C para calcular e retornar a soma dos elementos das bordas horizontais de uma matriz. 
+// Exemplo: dada a matriz abaixo, a função retornará: 1+2+3+4+13+14+15+15=68.
+// {1, 2, 3, 4}
+// {5, 6, 7, 8}
+// {9, 10, 11, 12}
+// {13, 14, 15, 16}
+// Link: https://onlinegdb.com/KlsaVUT_5
+
+#include <stdio.h>
+
+    int somaBordasHorizontais(int L, int C, int mat[L][C]) {
+    
+    int i, j, soma=0;
+    
+    for (i=0; i<L; i++) {
+        if (i==0||i==L-1){
+            for (j = 0; j < C; j++) {
+                soma = soma + mat[i][j];
+            }
+        }
+    }
+    
+    return soma ;
+}
+
+int main()
+{
+    int matrizTeste[4][4] = {
+        {1, 2, 3, 4}, 
+        {5, 6, 7, 8},
+        {9, 10, 11, 12},
+        {13, 14, 15, 16}
+    };
+    
+    printf("A soma das bordas horzizontais é: %d", somaBordasHorizontais(4,4,matrizTeste));
+
+    return 0;
+}
+//______________________________________________________________________________________________________________________________________
+
+// Exercício: Soma das Linhas Pares da Matriz
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Variação do problema anteior. 
+// Crie uma função em C para calcular e retornar a soma dos elementos das linhas pares de uma matriz. 
+// Exemplo: dada a matriz abaixo, a função retornará: 5+6+7+8+13+14+15+15=84.
+// {1, 2, 3, 4}
+// {5, 6, 7, 8}
+// {9, 10, 11, 12}
+// {13, 14, 15, 16}
+// Link: https://onlinegdb.com/wfAyjpT0x
+
+#include <stdio.h>
+
+    int somaLinhasPares(int L, int C, int mat[L][C]) {
+    
+    int i, j, soma=0;
+    
+    for (i=0; i<L; i++) {
+        if (i%2==0){
+            for (j = 0; j < C; j++) {
+                soma = soma + mat[i][j];
+            }
+        }
+    }
+    
+    return soma ;
+}
+
+int main()
+{
+    int matrizTeste[4][4] = {
+        {1, 2, 3, 4}, 
+        {5, 6, 7, 8}, 
+        {9, 10, 11, 12},
+        {13, 14, 15, 16} 
+    };
+    
+    printf("A soma dos elementos das linhas pares é: %d", somaLinhasPares(4,4,matrizTeste));
+
+    return 0;
+}
+//______________________________________________________________________________________________________________________________________
+
+// Exercício: Soma das Colunas Ímpares da Matriz
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Variação do problema anteior. 
+// Crie uma função em C para calcular e retornar a soma dos elementos das colunas ímpares de uma matriz. 
+// Exemplo: dada a matriz abaixo, a função retornará: 2+6+10+14+4+8+12+16=72.
+// {1, 2, 3, 4}
+// {5, 6, 7, 8}
+// {9, 10, 11, 12}
+// {13, 14, 15, 16}
+// Link: https://onlinegdb.com/m1ryjCkve
+
+#include <stdio.h>
+
+    int somaColunasImpares(int L, int C, int mat[L][C]) {
+    
+    int i, j, soma=0;
+    
+    for (i=0; i<L; i++) {
+        for (j = 0; j < C; j++) {
+            if (j%2!=0){
+                soma = soma + mat[i][j];
+                }
+            }
+        
+    }
+    
+    return soma ;
+}
+
+int main()
+{
+    int matrizTeste[4][4] = {
+        {1, 2, 3, 4}, 
+        {5, 6, 7, 8}, 
+        {9, 10, 11, 12},
+        {13, 14, 15, 16} 
+    };
+    
+    printf("A soma dos elementos das colunas impares é: %d", somaColunasImpares(4,4,matrizTeste));
+
+    return 0;
+}
+//______________________________________________________________________________________________________________________________________
+
+// Exercício: Soma daDiagonal Principal da Matriz
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Variação do problema anteior. 
+// Crie uma função em C para calcular e retornar a soma dos elementos da diagonal principal de uma matriz. 
+// Exemplo: dada a matriz abaixo, a função retornará: 1+6+11+16=34.
+// {1, 2, 3, 4}
+// {5, 6, 7, 8}
+// {9, 10, 11, 12}
+// {13, 14, 15, 16}
+// Link: https://onlinegdb.com/m1ryjCkve
+
+#include <stdio.h>
+
+    int somaDiagonalPrincipal(int L, int C, int mat[L][C]) {
+    
+    int i, j, soma=0;
+    
+    for (i=0; i<L; i++) {
+        soma = soma + mat[i][i];
+        }
+    
+    return soma ;
+}
+
+int main()
+{
+    int matrizTeste[4][4] = {
+        {1, 2, 3, 4}, 
+        {5, 6, 7, 8}, 
+        {9, 10, 11, 12},
+        {13, 14, 15, 16} 
+    };
+    
+    printf("A soma dos elementos da diagonal principal é: %d", somaDiagonalPrincipal(4,4,matrizTeste));
+
+    return 0;
+}
+//______________________________________________________________________________________________________________________________________
+// Exercício: Soma da Diagonal Secundaria da Matriz
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Variação do problema anteior. 
+// Crie uma função em C para calcular e retornar a soma dos elementos da diagonal secundaria de uma matriz. 
+// Exemplo: dada a matriz abaixo, a função retornará: 4+7+10+13=34.
+// {1, 2, 3, 4}
+// {5, 6, 7, 8}
+// {9, 10, 11, 12}
+// {13, 14, 15, 16}
+// Link: https://onlinegdb.com/K6G2kSjaW
+
+#include <stdio.h>
+
+    int somaDiagonalSecundaria(int L, int C, int mat[L][C]) {
+    
+    int i, j, soma=0;
+    
+    for (i=0; i<L; i++) {
+        soma = soma + (mat[i][L-1-i]);
+        }
+    
+    return soma ;
+}
+
+int main()
+{
+    int matrizTeste[4][4] = {
+        {1, 2, 3, 4}, 
+        {5, 6, 7, 8}, 
+        {9, 10, 11, 12},
+        {13, 14, 15, 16} 
+    };
+    
+    printf("A soma dos elementos da diagonal secundaria é: %d", somaDiagonalSecundaria(4,4,matrizTeste));
+
+    return 0;
+}
+//______________________________________________________________________________________________________________________________________
+
+// Exercício: Soma das bordas da Matriz
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Objetivo: Variação do problema anteior. 
+// Crie uma função em C para calcular e retornar a soma dos elementos da das bordas de uma matriz. 
+// Exemplo: dada a matriz abaixo, a função retornará: 1+2+3+4+5+8+9+12+13+16=102.
+// {1, 2, 3, 4}
+// {5, 6, 7, 8}
+// {9, 10, 11, 12}
+// {13, 14, 15, 16}
+// Link: https://onlinegdb.com/_PN5Z6FqH
+
+#include <stdio.h>
+
+    int somaBordas(int L, int C, int mat[L][C]) {
+    
+    int i, j, soma=0;
+    
+    for (i=0; i<L; i++) {
+            for (j = 0; j < C; j++) {
+                if ((i==0||i==L-1) || (j==0||j==C-1)) {
+                soma = soma + mat[i][j];
+            }
+        }
+    }
+    
+    return soma ;
+}
+
+int main()
+{
+    int matrizTeste[4][4] = {
+        {1, 2, 3, 4}, 
+        {5, 6, 7, 8}, 
+        {9, 10, 11, 12},
+        {13, 14, 15, 16} 
+    };
+    
+    printf("A soma dos elementos das bordas é: %d", somaBordas(4,4,matrizTeste));
+
+    return 0;
+}
