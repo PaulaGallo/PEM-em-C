@@ -10,7 +10,7 @@
 // ● A temperatura média da semana.
 // ● A maior e a menor temperatura registrada.
 // ● Quantos dias tiveram temperatura acima e abaixo da média calculada.
-// Link: https://onlinegdb.com/j-80UM1KK
+// Link: https://onlinegdb.com/te9qYOYvt
 
 #include <stdio.h>
 
@@ -55,3 +55,128 @@ int main()
     
     return 0;
 }
+//________________________________________________________________________________________________________________________________
+
+// Exercício: Estatísticas de Temperatura (Matrizes)
+// Enunciado: 
+// Escreva um programa que receba as temperaturas médias de cada dia de um mês (4 semanas vezes 7 dias) em uma matriz.
+// O programa deve calcular e exibir:
+// ● A temperatura média da do mês.
+// ● A maior e a menor temperatura registrada.
+// ● Quantos dias tiveram temperatura acima e abaixo da média calculada.
+// Para esta resolução, adaptei o código de vetor acima, para matriz.
+// Link: https://onlinegdb.com/-CVkiuX3C
+
+#include <stdio.h>
+
+int main()
+{
+    float temp [4][7];
+    float maior, menor, media;
+    int i, j, acima = 0, abaixo = 0;
+    float soma = 0;
+    
+    for (i=0; i<4; i++){
+        for (j=0; j<7; j++) {
+        printf ("Insira a tempera média da semana %d, dia %d : \n", i+1, j+1);
+        scanf ("%f", &temp[i][j]);
+        
+        soma = soma + temp[i][j];
+        
+        if (i==0 && j==0) {
+           maior = temp[0][0];
+           menor = temp[0][0];
+        }
+        else if (temp[i][j] > maior) {
+            maior = temp[i][j];
+        }
+        else if (temp [i][j]< menor) {
+            menor = temp[i][j];
+        }
+        }
+    }
+
+    media = soma/28;
+    
+    for (i=0; i<4; i++){
+        for (j=0; j<7; j++) {
+        if (temp[i][j] > media) {
+            acima ++;
+        }
+        else if (temp[i][j] < media) {
+            abaixo ++;
+        }
+        }
+    }
+    
+    printf ("A temperatura média foi de %.2f, sendo a maior temperatura %.2f, e a menor %.2f.", media, maior, menor);
+    printf ("Houveram %d dias acima e %d abaixo da media.", acima, abaixo);
+    
+    return 0;
+}
+
+//________________________________________________________________________________________________________________________________
+
+// Exercício: Controle de Estoque 3x3 (Matrizes)
+// Enunciado: 
+// Imagine uma loja com 3 corredores e 3 prateleiras em cada corredor. Crie uma matriz 3x3
+// onde cada elemento representa a quantidade de produtos em uma prateleira. O programa deve:
+// ● Permitir que o usuário preencha a matriz com as quantidades.
+// ● Calcular o total de produtos em cada corredor (soma de cada linha).
+// ● Informar o total geral de produtos na loja.
+// Link: https://onlinegdb.com/fRhc4zhuA
+
+#include <stdio.h>
+
+int main()
+{
+    int estoque[3][3];
+    int i, j, somaLinha, total = 0;
+     
+    for (i=0; i<3; i++){
+        somaLinha = 0;
+        
+        for (j=0; j<3; j++){
+            printf("Insira a quantidade de produtos do corredor %d, prateleira. %d \n", i+1, j+1);
+            scanf ("%d", &estoque[i][j]);
+            somaLinha = somaLinha + estoque[i][j];
+        }
+
+        printf("Produtos do corredor %d: %d \n", i+1, somaLinha);
+        total = total + somaLinha;
+    }
+
+    printf("Quantidade total de produtos da loja: %d", total);
+    
+    return 0;
+}
+//________________________________________________________________________________________________________________________________
+
+// Exercício: Conversão de Temperaturas (Função)
+// Enunciado: 
+// Crie um programa que utilize funções separadas para converter uma temperatura de Celsius para Fahrenheit.
+// ● A função converterCelsiusParaFahrenheit(float c) deve receber o valor em Celsius e retornar o valor calculado.
+// ● No main, o usuário digita o valor, a função é chamada, e o resultado é exibido com duas casas decimais.
+// ● Fórmula: F = (C * 1.8) + 32
+// Link: https://onlinegdb.com/QF1mlIaHM
+
+#include <stdio.h>
+
+float converterCelsiusParaFahrenheit(float C) {
+    float F;
+    F = (C * 1.8) + 32;
+    
+    return F;
+}
+
+int main()
+{
+    float C=0, F;
+    printf ("Insira a temperatura em Celsius:");
+    scanf ("%f", &C);
+    F = converterCelsiusParaFahrenheit(C);
+    printf("A temperatura em Fahrenheit é de: %.2f", F);
+  
+    return 0;
+}
+//________________________________________________________________________________________________________________________________
