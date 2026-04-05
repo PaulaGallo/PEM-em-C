@@ -35,6 +35,8 @@ int main()
     return 0;
 }
 
+//______________________________________________________________________________________________________________________________________
+
 // Exercício: Soma das bordas Horizontais de Matriz
 // Disciplina: Programação Estruturada e Modular
 // Linguagem: C
