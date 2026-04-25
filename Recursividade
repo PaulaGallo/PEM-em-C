@@ -1,0 +1,138 @@
+//Exercícios em recursividade presente em: https://fatecpem.blogspot.com/p/recursividade.html
+_________________________________________________________________________________________________
+
+// Exercício: Recursividade
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+
+/* Objetivo: 2) Crie uma função recursiva que calcule potenciações através de multiplicações sucessivas:
+x^y = x * x * x * x ......* x   --> y vezes
+Matematicamente, x^0 = 1  e  x^y = x * x^(y-1)
+a) Base: expoente == 0 -> resultado = 1
+b) x^(y-1) é um pouco mais simples que x^y
+c) x^y = x * x^(y-1)
+// Link: https://onlinegdb.com/vV5G367bo
+*/ 
+
+#include <stdio.h>
+ /*2) Crie uma função recursiva que calcule potenciações através de multiplicações sucessivas:
+
+x^y = x * x * x * x ......* x   --> y vezes
+
+a) Base: expoente == 0 -> resultado = 1
+    caso mais simples: x^0=1
+
+b) x^(y-1) é um pouco mais simples que x^y
+    um pouco mais simples que x^y é x^(y-1)
+
+c) x^y = x * x^(y-1)
+    Se eu soubesse quanto vale x^(y-1) como calcularia x^y? Basta multiplicar por x, ou seja:
+    x^y = x^(y-1) * x
+    
+    Tem conteúdo no debug
+*/
+
+int pot(int base, int expo){
+    if(expo==0) return 1;
+    else return pot(base, expo-1) * base;
+}
+
+int main()
+{
+    printf("2^5 = %d\n", pot(2,5));
+
+    return 0;
+}
+
+_________________________________________________________________________________________________
+// Exercício: Recursividade
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+
+/* Objetivo: Crie uma função recursiva que calcule multiplicações através de somas sucessivas:
+x*y = x + x + x + x ...... + x   -> y vezes
+Matematicamente, x*0 = 0  e  x*y = x + x*(y-1)
+a) Base: y == 0 -> resultado = 0
+b) x*(y-1) é um pouco mais simples que x*y
+c)  x*y = x + x*(y-1)
+// Link: https://onlinegdb.com/uwB3pES1lZ
+*/ 
+
+#include <stdio.h>
+
+int x(int base, int soma){
+    if(soma==0) return 0;
+    else return x(base, soma-1) + base;
+}
+
+int main()
+{
+    printf("2*5 = %d\n", x(2,5));
+
+    return 0;
+}
+_________________________________________________________________________________________________
+
+// Exercício: Recursividade
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+
+/* 4) Calcule recursivamente o valor da expressão: expressao(n) = 1/1 + 1/2 + 1/3 + 1/4 + 1/5 + 1/6 + ...+ 1/(n-1) + 1/n
+a) n=1 -> expressao(1) = 1/1
+    n=2 -> expressao(2) = 1/1 + 1/2
+    n=3 -> expressao(3) = 1/1 + 1/2 + 1/3
+    n=4 -> expressao(4) = 1/1 + 1/2 + 1/3 + 1/4
+Situação (instância) mais simples: n=1 -> expressao(1) = 1.0
+b) expressao(n) = 1/1 + 1/2 + 1/3 + 1/4 + 1/5 + 1/6 + ...+ 1/(n-1) + 1/n
+A um pouco mais simples: expressao(n-1) = 1/1 + 1/2 + 1/3 + 1/4 + 1/5 + 1/6 + ...+ 1/(n-1) 
+c) expressao(n) = expressao(n-1) + 1/n
+// Link: https://onlinegdb.com/jrAX3kSdz
+*/ 
+
+#include <stdio.h>
+
+float expressao(int n){
+    if(n==1) return 1.0;
+    else return expressao(n-1) + 1.0/n;
+}
+
+int main()
+{
+     printf("expressao(100) vale %f\n", expressao(100));
+
+    return 0;
+}
+
+_________________________________________________________________________________________________
+
+// Exercício: Recursividade
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+
+/* Crie uma função recursiva que calcule divisões através de subtrações sucessivas:
+x/y = número de vezes que consigo subtrair y de x (x - y - y - y - y ...... >= 0)
+Matematicamente,	se x < y  --> resposta = 0
+  caso contrário, x / y = ((x-y)/y) + 1
+a) Mais simples de todos: x < y -------> 0
+b) Um pouco mais simples: (x-y)/y
+c) x / y=((x-y)/y)+1
+// Link: https://onlinegdb.com/tbVh_CYUf
+*/ 
+#include <stdio.h>
+
+float sub(int x, int y){
+    if(x<=y) return 0;
+    else return ((x-y)/y) + 1;
+}
+
+// x / y = ((x-y)/y) + 1
+
+int main()
+{
+    printf("100/5 = %f\n", sub(100,5));
+
+    return 0;
+}
+
+_________________________________________________________________________________________________
+
