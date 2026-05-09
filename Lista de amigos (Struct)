@@ -1,0 +1,157 @@
+// Exercício: Estrutura
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Link: https://onlinegdb.com/2GJwaegC1
+
+/*
+Link da atividade: https://fatecpem.blogspot.com/p/estruturas.html
+
+Exercícios
+Todos estes exercícios a seguir têm por base o código-base, que é um mini CRUD (Create-Read-Update-Delete, ou Criar-Ler-Atualizar-Remover).
+1) Inclua novos campos, como endereço, e-mail, data de nascimento, etc.
+2) Crie uma função procurar, com a assinatura abaixo, de modo que ela possa ser aproveitada tanto na funcionalidade procurar, quanto na excluir:
+	
+  int procurar(char procurado[], struct ficha vetor[], int num_fichas)
+
+O retorno dessa função será o índice do elemento encontrado, ou -1, caso o mesmo não tenta sido localizado.
+
+3) Reimplemente a função procurar de modo recursivo (particularmente não há nenhuma vantagem nesta alteração, é só para treinarmos recursividade).
+DICA: veja o exercício 10 da lista de recursividade
+
+4) Refaça a funcionalidade de exclusão de modo a não ter que copiar todos os elementos abaixo do excluído.
+
+Código a ser substituído:
+	int j;
+       for(j=i+1; j<fichas_existentes; j++)
+       {
+   	agenda[j-1] = agenda[j];
+       }
+       fichas_existentes--;
+       proxima--;
+
+
+5) Refaça o procurar de modo a trabalhar mesmo com pedaços de nomes (dica: pesquise uma função chamada "strstr").
+DICA: exemplo de uso da função strstr()
+#include <stdio.h>
+#include <string.h>
+int main () {
+	char texto[20] = "Joao da Silva";
+	char pedaco1[10] = "Silva";
+	char pedaco2[10] = "Santos";
+	if(strstr(texto, pedaco1) != NULL)
+		printf("O pedaco %s existe dentro de %s\n",
+			pedaco1, texto);
+	else printf("O pedaco %s NAO existe dentro de %s\n",
+		pedaco1, texto);
+	if(strstr(texto, pedaco2) != NULL)
+		printf("O pedaco %s existe dentro de %s\n",
+			pedaco2, texto);
+	else printf("O pedaco %s NAO existe dentro de %s\n",
+		pedaco2, texto);
+	return 0;
+}
+
+6) Crie uma funcionalidade de alterar (Update do crUd).
+*/
+
+_________________________________________________________________________________________________________________________
+
+//Código Base para o Mini-Projeto Agenda de Amigos
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include <locale.h>
+#include <stdlib.h>
+typedef struct ficha{
+	char nome[40];
+	char telefone[20];
+	char email [40];
+	int validade;
+} FICHA;
+
+int procurar(char procurado[], FICHA vetor[], int num_fichas) 
+{
+    int i;
+			for(i=0; i<num_fichas; i++)
+			{
+			  //Ignorando Maiusculas/Minusculas:
+			  //if(strcasecmp(procurado, agenda[i].nome) == 0)
+			  if(strcmp(procurado, vetor[i].nome) == 0 && vetor[i].validade == 1)
+			  {
+			    return i;
+			  }
+			}
+			return -1;	
+}
+
+int main()
+{
+	FICHA agenda[100];
+	int fichas_existentes = 0, proxima = 0;
+	char opcao[10]="0"; 
+        setlocale(LC_ALL, "Portuguese");
+	while(opcao[0] != '5')
+	{
+		printf("\nEntre com a opção desejada:\n");
+		printf("\n1) Inserir ficha:");
+		printf("\n2) Procurar por nome:");
+		printf("\n3) Listar toda a base:");
+		printf("\n4) Excluir por nome:");
+		printf("\n5) Sair\n\n");
+		fgets(opcao, 10, stdin);
+		if(opcao[0] == '1') //inserir
+		{
+			printf("\nEntre com um nome:");
+			fgets(agenda[proxima].nome, 40, stdin);
+			printf("\nEntre com um telefone:");
+			fgets(agenda[proxima].telefone, 20, stdin);
+			printf("\nEntre com um email:");
+			fgets(agenda[proxima].email, 40, stdin);
+			agenda[proxima].validade = 1;
+			fichas_existentes++;
+			proxima++;
+		}
+		if(opcao[0] == '2') //procurar
+		{
+		     char procurado[40];
+			printf("\nEntre com o nome procurado:");
+			fgets(procurado, 40, stdin);
+			
+			int i = procurar(procurado, agenda, fichas_existentes);
+			if (i != -1) {
+			    printf("\nO telefone de %s é %s",
+			      agenda[i].nome, agenda[i].telefone);
+			    printf("\nO email de %s é %s",
+			      agenda[i].nome, agenda[i].email);
+		        }
+			    else printf("\n\nNome não encontrado\n");
+		        }
+		
+		if(opcao[0] == '3') //listar tudo
+		{
+			printf("\n\n");
+			int i;
+			for(i=0; i<fichas_existentes; i++)
+			{
+			    if(agenda[i].validade ==1)
+			        printf("O telefone de %s é %s\n",
+			            agenda[i].nome, agenda[i].telefone);
+			}
+			if(fichas_existentes == 0)
+				printf("A base de dados está vazia!\n");
+		}
+		if(opcao[0] == '4') //excluir	
+		{
+			char procurado[40];
+			printf("\nEntre com o nome que sera excluído:");
+			fgets(procurado, 40, stdin);
+			int i = procurar(procurado, agenda, fichas_existentes);
+			if(i != -1)
+			{   printf("\n\nO telefone de %s, que é %s, será removido\n", agenda[i].nome, agenda[i].telefone);
+			    agenda[i].validade=0;
+			}
+            else printf("\n\nNome não encontrado\n");
+		}
+	}
+	return 0;
+}
