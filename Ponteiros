@@ -1,0 +1,118 @@
+// Exercício: Ponteiro
+// Disciplina: Programação Estruturada e Modular
+// Linguagem: C
+// Link: https://onlinegdb.com/wNLryTmPY
+
+/* 
+1) a) Qual o valor de y no final do programa?
+
+   b) Escreva um /* comentário */ em cada comando de atribuição explicando o que ele faz e o valor da variável à  esquerda do '=' após sua execução.
+
+   c) Explique o porquê de a atribuição  *q = 10  causar problemas.
+
+
+#include <stdio.h>
+int main()
+{
+	int x, y, *p, *q;
+	y = 19;
+	p = &y;
+	x = *p;
+	x = 7;
+	(*p)++;
+	x--;
+	(*p) = (*p) + x;
+	printf ("y = %d\n", y);
+	*q = 10;
+	return 0;
+}
+*\
+
+__________________________________________
+//Resolução
+#include <stdio.h>
+int main()
+{
+	int x, y, *p, *q; //declarando as variáveis, sendo p e q os endereços de memoria
+	y = 19; //adicionou o valor 19 na variável y
+	p = &y; //adicionou o valor do endereço da variável y na variável p
+	x = *p; //adicionou o conteúdo da memória de p, na variável x. então p vale 19 aqui
+	x = 7; //muda o conteudo de x, que era 19 para 7
+	(*p)++; // adiciona mais 1 no endereço de p, que vira 20
+	x--; //tira 1 de x, que era 7 e vira 6
+	(*p) = (*p) + x; //pega o conteudo p (que é 20), e soma com o conteudo de x (que é 6)
+	printf ("y = %d\n", y); //mostra o resultado da soma que é 26
+	*q = 10; //declara que o conteudo de q é 10, mas não foi mostrado em qual endereço, então o S.O bloqueia
+	return 0;
+}
+__________________________________________________________________________________________________________
+/*
+Link: https://onlinegdb.com/F92HUoluG
+2) Comente o trecho abaixo linha-a-linha e mostre o que será impresso pelo comando printf:
+
+
+	int a = 10, b = 7, c;
+	int * p = &a;
+	int * q = &b;
+	int * r = &c;
+	*r = *p;
+	*p = *q;
+	*q = *r;
+	printf("%d  -  %d", a, b);
+*\
+__________________________________________________________
+#include <stdio.h>
+int main()
+{
+int a = 10, b = 7, c; //declara as variaveis de a, b e c
+	int * p = &a; //declara que o endereço de p deve ser armazenado no endereço 10 da memoria RAM
+	int * q = &b; //declara que o endereço de q deve ser armazenado no endereço 7 da memoria RAM 
+	int * r = &c; //declara que o endereço de r deve ser armazenado no endereço da memoria RAM que esta alocado o c
+	*r = *p; //conteudo de r é igual ao conteudo de p
+	*p = *q; //conteudo de p é igual ao conteudo de q
+	*q = *r; //conteudo de q é igual ao conteudo de r
+	printf("%d  -  %d", a, b); //mostra que a=7 e q = 10
+	return 0;
+}
+__________________________________________________________________________________________________________
+/* Link: https://onlinegdb.com/ziuFGS0s6
+3) Comente o trecho abaixo linha-a-linha e mostre o que será impresso pelo comando printf:
+
+
+	int vet[ ] = { 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 }; 						
+	int * p = &(vet[2]);		
+	int i;										
+	for ( i = 1; i <= 6; i++ ) 	
+	{	printf ("%d -  ", *p);						
+		p++;														
+	}				
+*\
+_______________________________________________________________
+3) Comente o trecho abaixo linha-a-linha e mostre o que será impresso pelo comando printf:
+
+#include <stdio.h>
+int main()
+{
+int vet[ ] = { 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 }; //declara um vetor de 10 indices						
+	int * p = &(vet[2]); //declara que o endereço p tem o mesmo valor do indice 2 do vet (ou seja, = 6)		
+	int i; //declara i										
+	for ( i = 1; i <= 6; i++ ) // contador de 1 a 6
+	{	printf ("%d -  ", *p); //imprime o valor do conteudo de p, que é 6					
+		p++; //soma mais 1 ao p (que está no indice [2], e mostra o conteudo de cada indice subsequente, então mostra vet [2],[3]...[6] 												
+	}	
+	return 0;
+}					
+__________________________________________________________________________________________________________
+
+/*
+
+4) Por que o primeiro scanf abaixo usa o operador '&' e o segundo não?
+
+	int x;
+	scanf("%d", &x);
+	char nome[50];
+	scanf("%s", nome);
+__________________________________________________________________
+porque no caso de X, ele precisa procurar qual o endereço da memória. em vetores, o nome do vetor já é um ponteiro.
+*\
+
